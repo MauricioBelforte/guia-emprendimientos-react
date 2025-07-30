@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import EntradaMensaje from './componentes/EntradaMensaje'
+import HistorialMensajes from './componentes/HistorialMensajes'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -18,7 +19,7 @@ function App() {
         </a>
       </div> */}
       <h1>Vite + React</h1>
-
+      <HistorialMensajes mensajes={[]} />
       <EntradaMensaje />
   {/*     <div className="bg-blue-600 p-4 text-white rounded">
   Tailwind funcionando sin errores ✅

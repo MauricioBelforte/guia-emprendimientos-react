@@ -1,3 +1,5 @@
+import BurbujaMensaje from './BurbujaMensaje';
+
 function HistorialMensajes({ mensajes }) {
   return (
     <div className="historial-mensajes flex flex-col gap-2 px-4 py-4 overflow-y-auto h-[300px] bg-[#F8F8F8] rounded-md shadow-inner">
@@ -10,8 +12,8 @@ function HistorialMensajes({ mensajes }) {
       {/* Renderizado dinámico de cada mensaje */}
 
 
-        {mensajes.map(({ id, texto }) => (
-        <BurbujaMensaje key={id} texto={texto} esUsuario={true} className="bg-[#DCF8C6] text-sm px-3 py-2 rounded-lg max-w-[80%] self-end"/>
+        {mensajes.map(({ id, texto,emisor }) => (
+        <BurbujaMensaje key={id} texto={texto} emisor={emisor} className="bg-[#DCF8C6] text-sm px-3 py-2 rounded-lg max-w-[80%] self-end"/>
         ))}
 
     

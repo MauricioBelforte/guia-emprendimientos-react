@@ -51,3 +51,39 @@ Este paso te permite **visualizar el mensaje enviado desde `EntradaMensaje`**, c
 
 ---
 
+
+
+## 🔧 Readaptación sugerida
+
+Dejás este bloque activo **por ahora** para visualizar los mensajes normalmente:
+
+```jsx
+{mensajes.map((texto, index) => (
+  <div
+    key={index}
+    className="bg-[#DCF8C6] text-sm px-3 py-2 rounded-lg max-w-[80%] self-end"
+  >
+    {texto}
+  </div>
+))}
+```
+
+Y justo arriba, como comentario técnico, podés dejar esto para vos:
+
+```jsx
+// 🔜 TODO: reemplazar por <BurbujaMensaje key={index} texto={texto} />
+// cuando el componente esté disponible y acepte props como texto, hora, emisor, avatar...
+```
+
+---
+
+💡 De esa forma:
+
+- No rompés el flujo actual 🧪
+- Te anticipás a la modularidad 🧩
+- Te dejás pistas claras para la migración futura 🛠️
+
+Podés incluso dejar esa intención en el README de la clase 5, tipo:
+
+> 👣 En esta versión, los mensajes se renderizan directamente. En clase futura se modulariza como `<BurbujaMensaje />`.
+

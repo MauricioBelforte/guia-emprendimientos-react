@@ -20,6 +20,8 @@ function App() {
       </div> */}
       <h1>Vite + React</h1>
       <HistorialMensajes mensajes={[]} />
+{/* <HistorialMensajes mensajes={mensajes} /> */}
+
       <EntradaMensaje />
   {/*     <div className="bg-blue-600 p-4 text-white rounded">
   Tailwind funcionando sin errores ✅

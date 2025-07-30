@@ -9,17 +9,13 @@ function HistorialMensajes({ mensajes }) {
 
       {/* Renderizado dinámico de cada mensaje */}
 
-   {/* // 🔜 TODO: reemplazar render directo por componente <BurbujaMensaje /> cuando esté creado
-// mensajes.map((texto, index) => <BurbujaMensaje key={index} texto={texto} />)
- */}
-      {mensajes.map((texto, index) => (
-        <div
-          key={index}
-          className="bg-[#DCF8C6] text-sm px-3 py-2 rounded-lg max-w-[80%] self-end"
-        >
-          {texto}
-        </div>
-      ))}
+
+        {mensajes.map(({ id, texto }) => (
+        <BurbujaMensaje key={id} texto={texto} esUsuario={true} className="bg-[#DCF8C6] text-sm px-3 py-2 rounded-lg max-w-[80%] self-end"/>
+        ))}
+
+    
+
     </div>
   );
 }

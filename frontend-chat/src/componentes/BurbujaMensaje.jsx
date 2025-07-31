@@ -3,14 +3,14 @@
 
 function BurbujaMensaje({ texto, emisor = 'usuario' }) {
       const estilos = {
-    sistema: 'bg-gray-200 self-start text-gray-700',
-    usuario: 'bg-[#DCF8C6] self-end text-black',
+    sistema: 'bg-white self-start text-xl text-gray-700',
+    usuario: 'bg-[#DCF8C6] self-end text-xl text-black',
     otro: 'bg-white self-start text-black',
   };
   return (
     <div
       className={`
-        px-3 py-2 rounded-lg text-sm max-w-[80%] shadow-md
+        px-3 py-3 rounded-lg text-sm max-w-[80%] mb-5 shadow-md
         ${estilos[emisor] || estilos.otro}
       `}
       // 📌 Explicación de clases:

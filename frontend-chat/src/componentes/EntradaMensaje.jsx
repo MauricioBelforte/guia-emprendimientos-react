@@ -18,6 +18,7 @@ import { useState } from 'react'; // Importamos el hook 'useState' para manejar 
   const manejarEnvio = (evento) => {
     evento.preventDefault(); // Previene recarga de la página
     if (mensaje.trim()) { // Solo envía si hay contenido real
+
       onEnviar(mensaje); // Llama a la función que envía el mensaje al padre
       setMensaje(''); // Limpia el campo después de enviar
     } else {
@@ -36,7 +37,7 @@ import { useState } from 'react'; // Importamos el hook 'useState' para manejar 
 
 
   return (
-    <form onSubmit={manejarEnvio} className="entrada-mensaje flex gap-4 items-end"> {/* Este bloque maneja el envío y alinea el botón al fondo del textarea dinámico */}
+    <form onSubmit={manejarEnvio} className="entrada-mensaje flex p-4 gap-4 bg-[#c6e99dc2]  rounded-b-2xl  items-end"> {/* Este bloque maneja el envío y alinea el botón al fondo del textarea dinámico */}
       
       {/* Textarea con altura automática, fondo claro y borde defensivo */}
       <textarea
@@ -48,7 +49,7 @@ import { useState } from 'react'; // Importamos el hook 'useState' para manejar 
         className={`
           flex-grow px-4 py-2 rounded-md bg-[#FEFEFE] resize-none overflow-hidden
           border ${error ? 'border-red-400 ring-2 ring-red-200' : 'border-gray-300'}
-          focus:outline-none focus:ring focus:ring-green-500
+          focus:outline-none focus:ring focus:ring-indigo-300
         `} // Estilos visuales + defensas si hay error
         style={{ minHeight: '40px', maxHeight: '200px' }} // Limita el crecimiento vertical para evitar desbordes
       />
@@ -56,7 +57,7 @@ import { useState } from 'react'; // Importamos el hook 'useState' para manejar 
       {/* Botón de envío con alineación vertical automática (se mantiene abajo mientras crece el textarea) */}
       <button
         type="submit"
-        className="self-end text-white bg-[#1B8755] hover:bg-[#1DAA61] px-4 py-2 rounded-md transition disabled:opacity-50" // Botón estilo WhatsApp con colores respetados
+        className="self-end text-white bg-[#8e82cf] hover:bg-[#846eff] px-4 py-2 rounded-md transition disabled:opacity-90" // Botón estilo WhatsApp con colores respetados
         disabled={!mensaje.trim()} // Desactiva si no hay texto válido
       >
         Enviar

@@ -1,8 +1,134 @@
 
+# 🧠 Clase 10: Flujo Conversacional Guiado con Bienvenida Integrada y Ficha Final
 
-## 🧠 Clase 10: Flujo Conversacional Guiado con Bienvenida Integrada y Ficha Final
+
+## 🧩 Estructura general del componente `ChatApp`
+
+Este componente es el corazón del sistema conversacional. Maneja:
+- El **estado de los mensajes** (`mensajes`)
+- El **estado del índice de pregunta actual** (`indicePregunta`)
+- El **estado de las respuestas del usuario** (`respuestas`)
+- La **lógica de avance**, condiciones especiales y generación de ficha final
 
 ---
+
+## 🧠 Estados iniciales
+
+```jsx
+const [mensajes, setMensajes] = useState([
+  {
+    id: crypto.randomUUID(),
+    emisor: 'sistema',
+    texto: preguntas[0].pregunta + "\n" + preguntas[0].explicacion,
+    timestamp: new Date().toISOString()
+  }
+]);
+```
+
+- Se inicia con un solo mensaje del sistema: la **pregunta de bienvenida**.
+- `mensajes` es un array que se irá llenando con cada interacción.
+- `crypto.randomUUID()` genera un ID único para cada mensaje (buena práctica para React al renderizar listas).
+- `timestamp` guarda la hora del mensaje, útil para orden o trazabilidad futura.
+
+---
+
+## 🔄 Función `agregarMensajeUsuario`
+
+Esta función se activa cuando el usuario envía un mensaje desde el componente hijo `EntradaMensaje`.
+
+### 1. Guarda la respuesta del usuario
+
+```jsx
+const claveActual = preguntas[indicePregunta]?.clave;
+const respuestasActualizadas = { ...respuestas, [claveActual]: textoMensajeUsuario };
+setRespuestas(respuestasActualizadas);
+```
+
+- Extrae la **clave** de la pregunta actual (ej: `"instagram"`)
+- Crea una copia del objeto `respuestas` y le agrega la nueva respuesta
+- Actualiza el estado con `setRespuestas`
+
+### 2. Agrega el mensaje del usuario al historial
+
+```jsx
+setMensajes(prev => [...prev,
+  { id: crypto.randomUUID(), emisor: 'usuario', texto: textoMensajeUsuario, timestamp }
+]);
+```
+
+- Se agrega el mensaje del usuario al array `mensajes`
+- Esto permite que el historial se renderice con el nuevo mensaje
+
+### 3. Condición especial: si el usuario responde "no" en el paso 1
+
+```jsx
+if (indicePregunta === 1 && textoMensajeUsuario.toLowerCase().includes("no")) {
+  // mensaje de cierre anticipado
+  return;
+}
+```
+
+- Si el usuario no quiere seguir, se corta el flujo y se le muestra un mensaje de cierre
+- No se avanza a la siguiente pregunta
+
+### 4. Avanza a la siguiente pregunta (si hay más)
+
+```jsx
+if (indicePregunta + 1 < preguntas.length) {
+  const siguientePregunta = preguntas[indicePregunta + 1];
+  setIndicePregunta(indicePregunta + 1);
+  setMensajes(prev => [...prev,
+    {
+      id: crypto.randomUUID(),
+      emisor: 'sistema',
+      texto: siguientePregunta.pregunta + "\n" + siguientePregunta.explicacion,
+      timestamp
+    }
+  ]);
+}
+```
+
+- Se incrementa el índice
+- Se muestra la siguiente pregunta del sistema
+
+### 5. Si ya no hay más preguntas → genera ficha resumen
+
+```jsx
+const resumen = `Instagram: ${respuestasActualizadas.instagram || 'No proporcionado'} ...`;
+```
+
+- Se arma un resumen con todas las respuestas
+- Se agregan 3 mensajes finales:
+  1. Agradecimiento
+  2. Ficha generada
+  3. Instrucción para editar campos
+
+---
+
+## 🧱 Renderizado de componentes hijos
+
+```jsx
+<HistorialMensajes mensajes={mensajes} />
+<EntradaMensaje onEnviar={agregarMensajeUsuario} />
+```
+
+- `HistorialMensajes` recibe el array de mensajes y los muestra
+- `EntradaMensaje` recibe la función `agregarMensajeUsuario` como prop
+  - Cuando el usuario envía un mensaje, esta función se ejecuta con el texto
+
+---
+
+## 💡 Sugerencias para seguir creciendo
+
+- Podés agregar un estado `flujoFinalizado` para manejar mejor el cierre del flujo
+- Modularizar la lógica de generación de ficha en una función aparte (`generarFicha(respuestas)`)
+- Agregar validaciones defensivas por tipo de dato (email, website, etc.)
+- Mostrar un resumen parcial en cada paso para reforzar la sensación de avance
+
+---
+
+
+
 
 ### 📦 Importaciones
 

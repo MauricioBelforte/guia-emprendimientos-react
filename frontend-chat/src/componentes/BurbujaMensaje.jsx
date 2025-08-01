@@ -10,7 +10,7 @@ function BurbujaMensaje({ texto, emisor = 'usuario' }) {
   return (
     <div
       className={`
-        px-3 py-3 rounded-lg text-sm max-w-[80%] mb-5 shadow-md
+        px-3 py-3 rounded-lg text-sm max-w-[80%] mb-5 shadow-xl
         ${estilos[emisor] || estilos.otro}
       `}
       // 📌 Explicación de clases:

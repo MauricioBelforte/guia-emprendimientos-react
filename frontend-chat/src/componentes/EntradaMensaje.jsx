@@ -57,7 +57,7 @@ import { useState } from 'react'; // Importamos el hook 'useState' para manejar 
       {/* Botón de envío con alineación vertical automática (se mantiene abajo mientras crece el textarea) */}
       <button
         type="submit"
-        className="self-end text-white bg-[#8e82cf] hover:bg-[#846eff] px-4 py-2 rounded-md transition disabled:opacity-90" // Botón estilo WhatsApp con colores respetados
+        className="self-end text-white bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded-md transition disabled:opacity-90" // Botón estilo WhatsApp con colores respetados
         disabled={!mensaje.trim()} // Desactiva si no hay texto válido
       >
         Enviar

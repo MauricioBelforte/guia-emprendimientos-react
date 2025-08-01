@@ -14,7 +14,7 @@ function App() {
   return (
     <>
  
-    <div className="min-h-screen bg-[#fffeda]">
+    <div className=" bg-[#fffeda] flex flex-col h-screen">
       {/* Llamada al componente de navegación */}
       <BarraNavegacion
         vistaActual={vistaActual}        // Valor actual del estado
@@ -22,14 +22,14 @@ function App() {
       />
 
       {/* Vista central que cambia según el estado */}
-      <main className="p-4">
+      <main className="p-8 flex-1 flex flex-col">
         {vistaActual === 'Chat' && <ChatApp />}
         {vistaActual === 'Emprendimientos' && <ListaEmprendimientos />}
         {vistaActual === 'Perfil' && <VistaPerfil />}
       </main>
     </div>
 
-      {/* <ChatApp /> */}
+     
 
     </>
   )

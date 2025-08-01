@@ -10,7 +10,7 @@ function HistorialMensajes({ mensajes }) {
 
   return (
     <div
-      className="historial-mensajes overflow-y-auto h-[300px] rounded-t-2xl shadow-inner relative flex flex-col gap-2 px-4 py-4"
+      className="historial-mensajes overflow-y-auto flex-1 rounded-t-2xl shadow-inner relative flex flex-col gap-2 px-4 py-4"
       style={{
         backgroundImage: 'url("/bg6.png")',
         backgroundRepeat: 'repeat',

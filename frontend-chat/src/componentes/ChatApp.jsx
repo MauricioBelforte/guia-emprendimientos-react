@@ -1,6 +1,7 @@
 import { useState } from "react";
 import HistorialMensajes from "./HistorialMensajes";
 import EntradaMensaje from "./EntradaMensaje";
+import { guardarFicha } from '../services/guardarFicha';
 
 // 🧠 Clase 10: flujo guiado con bienvenida integrada
 const preguntasSistema = [
@@ -10,7 +11,7 @@ const preguntasSistema = [
     clave: "instagram"
   },
   {
-    pregunta: "🎉 ¡Solo con dejar tu Instagram ya sos parte de la comunidad!  \n 🔎 ¿Querés que te encuentren más rápido? SI/NO",
+    pregunta: "🎉 ¡Solo con dejar tu Instagram ya sos parte de la comunidad! \nPodés irte cuando quieras. Lo que ya compartiste queda guardado con cariño, y podés volver a editarlo más adelante.  \n 🔎 ¿Querés que te encuentren más rápido? Respondé por SI o por NO",
     explicacion: "👉 Este paso decide si continuás dejando más datos para ayudar al sistema a promocionarte por Localidad, Rubro, etc.",
     clave: "quiere_ser_visible"
   },
@@ -31,7 +32,7 @@ const preguntasSistema = [
   },
   {
     pregunta: "¿Ofrecés un producto 🍰👗 o un servicio 👨‍🔧?",
-    explicacion: "Esto ayuda a que te encuentren por lo que brindás.",
+    explicacion: "Esto ayuda a que te encuentren por lo que brindás. (Responde con la palabra producto o servicio)",
     clave: "tipo"
   },
   {
@@ -160,6 +161,8 @@ const [modoEdicionActivo, setModoEdicionActivo] = useState(false);
 
     // 🚪 Si no quiere seguir en paso 1
     if (indicePregunta === 1 && textoMensajeUsuario.toLowerCase().includes("no")) {
+      mostrarFicha(respuestasUsuarioActualizadas, "👌 ¡Gracias por compartir tus datos! 🎉 \n 👇 Esta es tu ficha:");
+      guardarFicha(respuestasUsuarioActualizadas, setMensajes);
       setMensajes(prev => [...prev,
         {
           id: crypto.randomUUID(),
@@ -167,7 +170,8 @@ const [modoEdicionActivo, setModoEdicionActivo] = useState(false);
           texto: "¡Perfecto! 😊 Tu perfil está creado con lo que dejaste. Si querés volver a editarlo más adelante, no hay problema.",
           timestamp
         }
-      ]);/* Actualiza el estado creando una copia del arreglo de mensajes agregando el nuevo mensaje del sistema */
+      ]);
+      setFlujoFinalizado(true);
       return;
     }
 
@@ -191,7 +195,9 @@ const [modoEdicionActivo, setModoEdicionActivo] = useState(false);
     } else {
 
       mostrarFicha(respuestasUsuarioActualizadas, "👌 ¡Gracias por compartir tus datos! 🎉 \n 👇 Esta es tu ficha:");
-       // setIndicePregunta(indicePregunta + 1);  opcional: marcar fin de flujo, finalizaron las preguntas principales 
+       
+      guardarFicha(respuestasUsuarioActualizadas, setMensajes);
+      // setIndicePregunta(indicePregunta + 1);  opcional: marcar fin de flujo, finalizaron las preguntas principales 
       setFlujoFinalizado(true);/* Actualiza el estado del flujo finalizado, activa el modo edición */
 
      

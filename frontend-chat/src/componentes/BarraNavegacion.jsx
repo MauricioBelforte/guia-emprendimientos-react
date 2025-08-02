@@ -11,7 +11,7 @@ function BarraNavegacion({ vistaActual, onCambiarVista }) {
       <div className="flex flex-col lg:flex-row md:items-center md:justify-between gap-2 ">
         
         {/* Título fijo, independiente del layout */}
-        <h1 className="text-4xl font-bold leading-tight py-2">
+        <h1 className="text-4xl font-bold leading-tight py-2 font-roboto">
           Guía de Emprendimientos <br className="lg:hidden" /> {/* Elimina el salto de linea para pantallas del medium para arriba */}
           y Servicios Locales
         </h1>
@@ -22,7 +22,7 @@ function BarraNavegacion({ vistaActual, onCambiarVista }) {
             <button
               key={vista}
               onClick={() => onCambiarVista(vista)}
-              className={`py-1 px-3 rounded transition-colors ${
+              className={`py-2 px-4 rounded transition-colors ${
                 vistaActual === vista
                   ? 'bg-white text-indigo-600 font-semibold'
                   : 'hover:bg-indigo-400'

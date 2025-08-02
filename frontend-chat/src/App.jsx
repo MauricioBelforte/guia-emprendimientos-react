@@ -4,6 +4,7 @@ import './App.css'
 
 import ChatApp from './componentes/ChatApp'
 import BarraNavegacion from './componentes/BarraNavegacion'
+import PieDePagina from './componentes/PieDePagina';
 /* import ListaEmprendimientos from './componentes/ListaEmprendimientos'
 import VistaPerfil from './componentes/VistaPerfil' */
 
@@ -27,6 +28,8 @@ function App() {
         {vistaActual === 'Emprendimientos' && <ListaEmprendimientos />}
         {vistaActual === 'Perfil' && <VistaPerfil />}
       </main>
+
+      <PieDePagina/>
     </div>
 
      
